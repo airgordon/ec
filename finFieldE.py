@@ -1,0 +1,77 @@
+from euqlid import gcd
+from polye import polye
+from zzne import zzne
+
+
+class finFieldE:
+
+    def __init__(self, x, field):
+        if not isinstance(x, polye):
+            raise Exception('{}'.format(x))
+
+        self.x = x
+        self.field = field
+
+    def __bool__(self):
+        return self.x
+
+    def __add__(self, other):
+        if isinstance(other, finFieldE):
+            return finFieldE(self.x + other.x, self.field)
+        elif isinstance(other, zzne):
+            return finFieldE(self.x + self.field.N.poly.of([other]), self.field)
+        return NotImplemented
+
+    def __radd__(self, other):
+        return self.__add__(other)
+
+    def __neg__(self):
+        return finFieldE(-self.x, self.field)
+
+    def __sub__(self, other):
+        return self + (-other)
+
+    def __mul__(self, other):
+        if isinstance(other, finFieldE):
+            return finFieldE(divmod(self.x * other.x, self.field.N)[1], self.field)
+        elif isinstance(other, zzne):
+            return finFieldE(self.x * self.field.N.poly.of([other]), self.field)
+        return NotImplemented
+
+    def __rmul__(self, other):
+        return self.__mul__(other)
+
+    def __pow__(self, other):
+        if not isinstance(other, int):
+            raise Exception('{}'.format(other))
+        if other < 0:
+            return self.__invert__().__pow__(-other)
+        if other == 0:
+            return self.field.one
+        if other == 1:
+            return self
+        r, q = divmod(other, 2)
+        t = self.__mul__(self).__pow__(r)
+        if q:
+            return t.__mul__(self)
+        else:
+            return t
+
+    def __invert__(self):
+        g, a, b = gcd(self.x, self.field.N, self.field.N.poly.zero, self.field.N.poly.one)
+        if abs(g) > 0:
+            raise Exception("Not a field!")
+        return finFieldE(~g.asFieldElement() * a, self.field)
+
+    def __truediv__(self, other):
+        return self * ~other
+
+    def __eq__(self, other):
+        return self.x == other.x
+
+    def __str__(self):
+        return '{}'.format(self.x)
+
+    def __repr__(self):
+        return '{}'.format(self.x)
+

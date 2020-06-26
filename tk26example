@@ -1,0 +1,52 @@
+import timeit
+from random import *
+
+import math
+
+from ecs import *
+from gost34_10_2001 import gost34_10_2001 as gostAlg
+from hex import endianRevert, h2i, lh22i, h22i
+from zzne import zzne
+
+
+class constPrng:
+    def getK(self):
+        return h2i("5782C53F110C596F9155D35EBD25A06A89C50391850A8FEFE33B0E270318857C")
+
+
+def checkStrSign(publicKey, sign, digest):
+    ec = id_GostR3410_2001_CryptoPro_A_ParamSet()
+    alg = gostAlg(ec, None)
+
+    s, r = h22i(sign)
+    sign = r, s
+
+    xs, ys = lh22i(publicKey)
+    Q = ec.of(ec.field.of(h2i(xs)), ec.field.of(h2i(ys)))
+    return alg.checkSign(Q, sign, h2i(digest))
+
+
+def genStrSign(privateKey, digest):
+    ec = id_GostR3410_2001_CryptoPro_A_ParamSet()
+    alg = gostAlg(ec, constPrng())
+
+    d = privateKey
+
+    Q = alg.privateToPublic(d)
+    publicKey = endianRevert('{:x}'.format(Q.x.x)) + endianRevert('{:x}'.format(Q.y.x))
+
+    h = h2i(digest)
+
+    sign = alg.sign(d, h)
+
+    sign = '{:x}'.format(sign[1]) + '{:x}'.format(sign[0])
+
+    return publicKey, sign
+
+
+digest = "706FA77A1F5ECDFA171B7ACB2128A0E6A4D26F3C0FFB2EF283B16CEA207E061C"
+privateKey = h2i("BFCF 1D62 3E5C DD30 32A7 C6EA BB4A 923C 46E4 3D64 0FFE AAF2 C3ED 39A8 FA39 9924")
+
+publicKey, sign = genStrSign(privateKey, digest)
+
+print(checkStrSign(publicKey, sign, digest))
