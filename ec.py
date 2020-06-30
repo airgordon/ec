@@ -4,7 +4,6 @@ from zzn import zzn
 
 class ec:
 
-
     def __init__(self, field, a, b, G, n=None):
         if not isinstance(field, zzn):
             raise Exception
@@ -15,9 +14,10 @@ class ec:
 
         self.Z = ece(self)
 
-        self.G = ece(self, G[0], G[1])
-        self.n = n
-        self.checkGeneratorOrder()
+        if G is not None:
+            self.G = ece(self, G[0], G[1])
+            self.n = n
+            self.checkGeneratorOrder()
 
     def of(self, x, y):
         return ece(self, x, y)
@@ -35,9 +35,9 @@ class ec:
             yield t
             t = t + self.G
 
-    def all(self, field = None):
+    def all(self, field=None):
         yield self.Z
-        if  not field:
+        if not field:
             field = self.field
         for x in field.generator():
             for y in field.generator():

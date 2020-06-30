@@ -57,6 +57,14 @@ class finFieldE:
         else:
             return t
 
+    def sqrt(self):
+        if not self.field._sqrt:
+            self.field.init_sqrt()
+        if self.field._sqrt[self]:
+            return self.field._sqrt[self]
+        else:
+            return []
+
     def __invert__(self):
         g, a, b = gcd(self.x, self.field.N, self.field.N.poly.zero, self.field.N.poly.one)
         if abs(g) > 0:

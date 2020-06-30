@@ -63,7 +63,7 @@ class ece:
         else:
             it = self
 
-        other = other % it.ec.n
+        # other = other % it.ec.n
 
         if other == 0:
             return ece(it.ec)

@@ -7,6 +7,9 @@ class zzn:
         self.zero = self.of(0)
         self.one = self.of(1)
 
+    def char(self):
+        return self.N
+
     def of(self, x):
         if x < 0 or x >= self.N:
             raise Exception

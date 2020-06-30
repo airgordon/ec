@@ -59,3 +59,4 @@ def _pi(point):
 
 pi = morph(_pi)
 I = morph(lambda x: x)
+# (pi ** 2 - t * pi + q * I) & P2 == Zero

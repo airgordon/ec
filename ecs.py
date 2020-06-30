@@ -160,8 +160,26 @@ def beginners2_2_6():
     a = field.of(0)
     b = field.of(5)
 
-    n = 1000 # lie!
-    Gx = None
-    Gy = None
+    n = None
 
-    return ec(field, a, b, (Gx, Gy), n)
+    return ec(field, a, b, None, n)
+
+def beginners4_1_1():
+    N = 11
+
+    field = zzn(N)
+    a = field.of(0)
+    b = field.of(4)
+
+    n = 12
+
+    return ec(field, a, b, None, n)
+
+def beginners4_1_3():
+    N = 11
+
+    field = zzn(N)
+    a = field.of(7)
+    b = field.of(2)
+
+    return ec(field, a, b, None, None)
