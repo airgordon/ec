@@ -13,7 +13,7 @@ class finFieldE:
         self.field = field
 
     def __bool__(self):
-        return self.x
+        return self.x.__bool__()
 
     def __add__(self, other):
         if isinstance(other, finFieldE):
@@ -60,16 +60,25 @@ class finFieldE:
     def sqrt(self):
         if not self.field._sqrt:
             self.field.init_sqrt()
-        if self.field._sqrt[self]:
+        if self in self.field._sqrt:
             return self.field._sqrt[self]
         else:
             return []
+
+    def log(self):
+        if not self.field._log:
+            self.field.init_log()
+
+        return self.field._log[self]
 
     def __invert__(self):
         g, a, b = gcd(self.x, self.field.N, self.field.N.poly.zero, self.field.N.poly.one)
         if abs(g) > 0:
             raise Exception("Not a field!")
         return finFieldE(~g.asFieldElement() * a, self.field)
+
+    def __hash__(self):
+        return self.x.__hash__()
 
     def __truediv__(self, other):
         return self * ~other

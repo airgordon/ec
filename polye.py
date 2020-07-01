@@ -3,6 +3,7 @@ from itertools import zip_longest
 
 import math
 
+from Utills import list_hash
 from zzne import zzne
 
 
@@ -11,6 +12,9 @@ class polye:
         self.poly = poly
         self.l = list(l)
         self.checkNorm()
+
+    def __bool__(self):
+        return self != self.poly.zero
 
     def __abs__(self):
         if not self:
@@ -112,6 +116,9 @@ class polye:
             acc = [self.poly.field.zero]
         self.normalize(divisible)
         return (polye(self.poly, acc), polye(self.poly, polye._mulConst(head, divisible, self.poly.field)))
+
+    def __hash__(self):
+        return list_hash(self.l)
 
     def __eq__(self, other):
         return self.l == other.l

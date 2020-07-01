@@ -183,3 +183,19 @@ def beginners4_1_3():
     b = field.of(2)
 
     return ec(field, a, b, None, None)
+    #
+    # zzz = ec.field
+    # p = poly(zzz)
+    # N4 = p.of([zzz.one, zzz.zero, zzz.one, zzz.of(4)])
+    # ff4 = finField(N4)
+    #
+    # t = tortion(ec, 7, ff4)
+
+def beginners5_0_1():
+    N = 23
+
+    field = zzn(N)
+    a = field.of(17)
+    b = field.of(6)
+
+    return ec(field, a, b, None, None)

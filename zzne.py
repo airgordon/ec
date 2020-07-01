@@ -47,6 +47,20 @@ class zzne:
         else:
             return t
 
+    def sqrt(self):
+        if not self.field._sqrt:
+            self.field.init_sqrt()
+        if self in self.field._sqrt:
+            return self.field._sqrt[self]
+        else:
+            return []
+
+    def log(self):
+        if not self.field._log:
+            self.field.init_log()
+
+        return self.field._log[self]
+
     def __invert__(self):
         return zzne(zzne.invert(self.x, self.N), self.field)
 
@@ -56,8 +70,13 @@ class zzne:
     def __eq__(self, other):
         return self.x == other.x
 
+    def __hash__(self):
+        return self.x
+
     def __str__(self):
         return '{}'.format(self.x)
 
     def __repr__(self):
         return '{}'.format(self.x)
+
+

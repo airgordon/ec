@@ -3,7 +3,6 @@ from zzn import zzn
 
 
 class ec:
-
     def __init__(self, field, a, b, G, n=None):
         if not isinstance(field, zzn):
             raise Exception
@@ -40,8 +39,7 @@ class ec:
         if not field:
             field = self.field
         for x in field.generator():
-            for y in field.generator():
-                try:
-                    yield ece(self, x, y)
-                except:
-                    pass
+            y_2 = x ** 3 + self.a * x + self.b
+            for y in y_2.sqrt():
+                yield ece(self, x, y)
+

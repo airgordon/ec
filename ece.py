@@ -112,3 +112,10 @@ class ece:
             return "Zero"
         else:
             return '({} {})'.format(self.x, self.y)
+
+    def log_repr(self):
+        f = lambda t: "g^" + str(t.log()) if t else "0"
+        if self.isZero:
+            return "Zero"
+        else:
+            return '({} {})'.format(f(self.x), f(self.y))
