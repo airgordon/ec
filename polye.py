@@ -1,3 +1,4 @@
+from functools import reduce
 from operator import neg
 from itertools import zip_longest
 
@@ -121,7 +122,11 @@ class polye:
         return list_hash(self.l)
 
     def __eq__(self, other):
-        return self.l == other.l
+        if isinstance(other, polye):
+            return self.l == other.l
+        elif isinstance(other, zzne):
+            return len(self.l) == 1 and self.l[0] == other
+        return NotImplemented
 
     def __str__(self):
         reversed = list(self.l)
@@ -130,6 +135,10 @@ class polye:
 
     def __repr__(self):
         return self.__str__()
+
+    def apply(self, x):
+        pows = map(lambda t: t[1] * x ** t[0], enumerate(self.l))
+        return reduce(lambda q, r: q + r, pows)
 
     def asFieldElement(self):
         if len(self.l) != 1:

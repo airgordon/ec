@@ -1,4 +1,5 @@
 from ece import ece
+from poly2 import poly
 from zzn import zzn
 
 
@@ -42,4 +43,8 @@ class ec:
             y_2 = x ** 3 + self.a * x + self.b
             for y in y_2.sqrt():
                 yield ece(self, x, y)
+
+    def poly(self):
+        p = poly(self.field)
+        return p.of([self.field.one, self.field.zero, self.a, self.b])
 

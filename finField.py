@@ -21,11 +21,11 @@ class finField:
             self.G = G
 
     def of(self, x):
+        if not isinstance(x, polye):
+            raise Exception
         (r, q) = divmod(x, self.N)
         if r:
             raise Exception("Remainder should be zero")
-        if x < 0 or x >= self.N:
-            raise Exception
         return finFieldE(x, self)
 
     def char(self):

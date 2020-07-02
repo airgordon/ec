@@ -23,13 +23,15 @@ class tortion:
 
     def __init__(self, ec, r, exField):
         if ec.field.char() ** tortion.k(r, ec.field.char()) != exField.char():
-            raise Exception("Not a valid field extension")
+            raise Exception('Not a valid field extension ({} {})'.format(tortion.k(r, ec.field.char()), len(exField.N.l))
+)
         self.ec = ec
         self.r = r
         self.exField = exField
 
     def all(self):
-        it1 = filter(lambda x: not (self.r * x), self.ec.all(self.exField))
+        it1 = filter(lambda x: not (self.r * x), self.ec.all()) #
+
         it1.__next__()
         P = it1.__next__()
 

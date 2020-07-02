@@ -84,7 +84,12 @@ class finFieldE:
         return self * ~other
 
     def __eq__(self, other):
-        return self.x == other.x
+        if isinstance(other, finFieldE):
+            return self.x == other.x
+        elif isinstance(other, zzne):
+            return self.x == other
+        return NotImplemented
+
 
     def __str__(self):
         return '{}'.format(self.x)

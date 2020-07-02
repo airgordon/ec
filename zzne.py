@@ -18,6 +18,8 @@ class zzne:
         return self.x != 0
 
     def __add__(self, other):
+        if not isinstance(other, zzne):
+            return NotImplemented
         return zzne(divmod(self.x + other.x, self.N)[1], self.field)
 
     def __neg__(self):
@@ -68,7 +70,9 @@ class zzne:
         return self * ~other
 
     def __eq__(self, other):
-        return self.x == other.x
+        if isinstance(other, zzne):
+            return self.x == other.x
+        return NotImplemented
 
     def __hash__(self):
         return self.x

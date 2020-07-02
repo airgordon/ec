@@ -199,3 +199,12 @@ def beginners5_0_1():
     b = field.of(6)
 
     return ec(field, a, b, None, None)
+
+def beginners5_1_1():
+    N = 23
+
+    field = zzn(N)
+    a = -field.one
+    b = field.zero
+
+    return ec(field, a, b, None, None)
