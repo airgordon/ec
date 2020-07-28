@@ -74,7 +74,7 @@ class finFieldE:
     def __invert__(self):
         g, a, b = gcd(self.x, self.field.N, self.field.N.poly.zero, self.field.N.poly.one)
         if abs(g) > 0:
-            raise Exception("Not a field!")
+            raise Exception('{} have no inverse over {}'.format(self.x, self.field.N))
         return finFieldE(~g.asFieldElement() * a, self.field)
 
     def __hash__(self):

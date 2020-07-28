@@ -208,3 +208,12 @@ def beginners5_1_1():
     b = field.zero
 
     return ec(field, a, b, None, None)
+
+def beginners5_3_1():
+    N = 47
+
+    field = zzn(N)
+    a = field.of(21)
+    b = field.of(15)
+
+    return ec(field, a, b, None, None)

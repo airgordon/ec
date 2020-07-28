@@ -9,6 +9,7 @@ class poly:
         self.field = field
         self.zero = polye(self, [field.zero])
         self.one = polye(self, [field.one])
+        self.u = polye(self, [field.zero, field.one])
 
     def of(self, l):
         return polye(self, reversed(list(l)))

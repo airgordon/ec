@@ -38,8 +38,8 @@ def Weil(P, Q, R, S, r):
     pl = poly(zz)
     mil = millersF(P.ec, pl)
 
-    fp = mil.divisor(P, r)
-    fq = mil.divisor(Q, r)
+    fp = mil.mfunc_slow(P, r)
+    fq = mil.mfunc_slow(Q, r)
 
     f = fp * (mil.line(P, R) * mil.vertical(P + R)) ** (-r)
     g = fq * (mil.line(Q, S) * mil.vertical(Q + S)) ** (-r)
