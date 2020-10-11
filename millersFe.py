@@ -1,5 +1,3 @@
-from functools import reduce
-
 from euqlid import gcd
 
 
@@ -56,9 +54,9 @@ class millersFe:
     def __truediv__(self, other):
         return self * ~other
 
-    def apply(self, P):
+    def __getitem__(self, P):
         x = P.x
         y = P.y
-        q = self.x.apply(x) + y * self.y.apply(x)
-        r = self.rx.apply(x) + y * self.ry.apply(x)
+        q = self.x[x] + y * self.y[x]
+        r = self.rx[x] + y * self.ry[x]
         return q / r

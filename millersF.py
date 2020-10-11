@@ -9,6 +9,7 @@ class millersF:
         self.one = millersFe(self.poly.one, self.poly.zero, self.poly.one, self.poly.zero, self)
 
     def of(self, x, y, r):
+        raise Exception()
         return millersFe(x, y, r, self)
 
     def vertical(self, p):
@@ -58,28 +59,28 @@ class millersF:
     #     else:
     #         return f
 
-    def _mfunc(self, P, m, xs):
+    def _mfunc(self, P, m, x):
         if m == 1:
-            return map(lambda x: self.one.apply(x), xs)
+            return self.one[x]
 
         (q, r) = divmod(m, 2)
 
-        f_m_2 = self._mfunc(P, q, xs)
+        f_m_2 = self._mfunc(P, q, x)
 
-        sq = map(lambda x: x * x, f_m_2)
-        d = self.line(q * P, q * P) * self.vertical(2 * q * P)
+        # sq = map(lambda x: x * x, f_m_2)
+        d = self.line(q * P, q * P)[x] * self.vertical(2 * q * P)[x]
 
         if r:
-            d = d * (self.line(P, (m - 1) * P) * self.vertical(m * P))
+            d = d * (self.line(P, (m - 1) * P)[x] * self.vertical(m * P)[x])
 
-        return list(map(lambda t: t[0] * d.apply(t[1]), zip(sq, xs)))
+        return f_m_2 * f_m_2 * d
 
-    def mfunc(self, P, r, xs):
+    def mfunc(self, P, r, x):
         if P.order() != r:
             raise Exception()
-        f = self._mfunc(P, r - 1, xs)
+        f = self._mfunc(P, r - 1, x)
         d = self.line(P, -P)
-        return list(map(lambda t: t[0] * d.apply(t[1]), zip(f, xs)))
+        return f * d[x]
 
     def mfunc_slow(self, P, r):
         if P.order() != r:

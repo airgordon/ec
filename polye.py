@@ -136,7 +136,7 @@ class polye:
     def __repr__(self):
         return self.__str__()
 
-    def apply(self, x):
+    def __getitem__(self, x):
         pows = map(lambda t: t[1] * x ** t[0], enumerate(self.l))
         return reduce(lambda q, r: q + r, pows)
 

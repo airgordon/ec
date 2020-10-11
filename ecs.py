@@ -3,7 +3,6 @@ from hex import h2i
 from zzn import zzn
 
 
-
 def bitcoin():
     N = pow(2, 256) \
         - pow(2, 32) \
@@ -24,6 +23,7 @@ def bitcoin():
 
     return ec(field, a, b, (Gx, Gy), n)
 
+
 def paar():
     N = 17
 
@@ -36,6 +36,7 @@ def paar():
     Gy = field.of(1)
 
     return ec(field, a, b, (Gx, Gy), n)
+
 
 def singular():
     N = 1009
@@ -51,6 +52,7 @@ def singular():
 
     return ec(field, a, b, (Gx, Gy), n)
 
+
 def gost34_10_2001():
     N = h2i("8000000000000000000000000000000000000000000000000000000000000431")
 
@@ -64,6 +66,7 @@ def gost34_10_2001():
     Gy = field.of(h2i("8E2A8A0E65147D4BD6316030E16D19C85C97F0A9CA267122B96ABBCEA7E8FC8"))
 
     return ec(field, a, b, (Gx, Gy), n)
+
 
 def id_GostR3410_2001_CryptoPro_A_ParamSet():  # a b N n x y
     N = h2i("00 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF \
@@ -88,6 +91,7 @@ def id_GostR3410_2001_CryptoPro_A_ParamSet():  # a b N n x y
 
     return ec(field, a, b, (Gx, Gy), n)
 
+
 def id_GostR3410_2001_CryptoPro_XchA_ParamSet():  # a b N n x y
     N = h2i("00 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF \
              FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FD \
@@ -111,6 +115,7 @@ def id_GostR3410_2001_CryptoPro_XchA_ParamSet():  # a b N n x y
 
     return ec(field, a, b, (Gx, Gy), n)
 
+
 def secp128r1():
     N = pow(2, 128) \
         - pow(2, 97) \
@@ -126,6 +131,7 @@ def secp128r1():
 
     return ec(field, a, b, (Gx, Gy), n)
 
+
 # Pairings for beginners
 def beginners():
     N = 11
@@ -140,6 +146,7 @@ def beginners():
 
     return ec(field, a, b, (Gx, Gy), n)
 
+
 def beginners2_2_5():
     N = 67
 
@@ -153,6 +160,7 @@ def beginners2_2_5():
 
     return ec(field, a, b, (Gx, Gy), n)
 
+
 def beginners2_2_6():
     N = 19
 
@@ -164,6 +172,19 @@ def beginners2_2_6():
 
     return ec(field, a, b, None, n)
 
+
+def beginners4_0_1():
+    N = 7691
+
+    field = zzn(N)
+    a = field.of(0)
+    b = field.of(1)
+
+    n = 2 * 2 * 3 * 641
+
+    return ec(field, a, b, None, n)
+
+
 def beginners4_1_1():
     N = 11
 
@@ -174,6 +195,7 @@ def beginners4_1_1():
     n = 12
 
     return ec(field, a, b, None, n)
+
 
 def beginners4_1_3():
     N = 11
@@ -191,6 +213,7 @@ def beginners4_1_3():
     #
     # t = tortion(ec, 7, ff4)
 
+
 def beginners5_0_1():
     N = 23
 
@@ -200,6 +223,7 @@ def beginners5_0_1():
 
     return ec(field, a, b, None, None)
 
+
 def beginners5_1_1():
     N = 23
 
@@ -208,6 +232,7 @@ def beginners5_1_1():
     b = field.zero
 
     return ec(field, a, b, None, None)
+
 
 def beginners5_3_1():
     N = 47
