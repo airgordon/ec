@@ -11,6 +11,8 @@ class poly:
         self.one = polye(self, [field.one])
         self.u = polye(self, [field.zero, field.one])
 
+    """Первый элемент входного списка СТАРШАЯ степень"""
+    # TODO перейти на использование u и убрать ревёрс
     def of(self, l):
         return polye(self, reversed(list(l)))
 

@@ -10,28 +10,45 @@ class zzne:
         if not isinstance(x, int):
             raise Exception('{}'.format(x))
 
-        self.x = x
+        self.x = x % field.N
         self.field = field
         self.N = field.N
+
+        if x < 0 or x >= self.N:
+            raise ValueError('{} is out of bound of this zzn: [0, {})'.format(x, self.N))
 
     def __bool__(self):
         return self.x != 0
 
+    def __int__(self):
+        return self.x
+
     def __add__(self, other):
-        if not isinstance(other, zzne):
+        if isinstance(other, zzne):
+            return zzne(divmod(self.x + other.x, self.N)[1], self.field)
+        elif isinstance(other, int):
+            return self + zzne(other, self.field)
+        else:
             return NotImplemented
-        return zzne(divmod(self.x + other.x, self.N)[1], self.field)
 
     def __neg__(self):
         return zzne(divmod(self.N - self.x, self.N)[1], self.field)
 
     def __sub__(self, other):
-        return self + (-other)
+        if isinstance(other, zzne):
+            return self + (-other)
+        elif isinstance(other, int):
+            return self - zzne(other, self.field)
+        else:
+            return NotImplemented
 
     def __mul__(self, other):
-        if not isinstance(other, zzne):
+        if isinstance(other, zzne):
+            return zzne(divmod(self.x * other.x, self.N)[1], self.field)
+        elif isinstance(other, int):
+            return self * zzne(other, self.field)
+        else:
             return NotImplemented
-        return zzne(divmod(self.x * other.x, self.N)[1], self.field)
 
     def __pow__(self, other):
         if not isinstance(other, int):
@@ -67,12 +84,20 @@ class zzne:
         return zzne(zzne.invert(self.x, self.N), self.field)
 
     def __truediv__(self, other):
-        return self * ~other
+        if isinstance(other, zzne):
+            return self * ~other
+        elif isinstance(other, int):
+            return self / zzne(other, self.field)
+        else:
+            return NotImplemented
 
     def __eq__(self, other):
         if isinstance(other, zzne):
             return self.x == other.x
-        return NotImplemented
+        elif isinstance(other, int):
+            return self == zzne(other, self.field)
+        else:
+            return NotImplemented
 
     def __hash__(self):
         return self.x
@@ -82,5 +107,3 @@ class zzne:
 
     def __repr__(self):
         return '{}'.format(self.x)
-
-

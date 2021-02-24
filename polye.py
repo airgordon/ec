@@ -47,9 +47,16 @@ class polye:
         return len(self.l) != 1 or self.l[0] != self.poly.field.zero
 
     def __add__(self, other):
-        l = polye._add(self.l, other.l, self.poly.field.zero)
-        self.normalize(l)
-        return polye(self.poly, l)
+        if isinstance(other, polye):
+            l = polye._add(self.l, other.l, self.poly.field.zero)
+            self.normalize(l)
+            return polye(self.poly, l)
+        elif self.poly.field == other.field:
+            res = self.l.copy()
+            res[0] = res[0] + other
+            return polye(self.poly, res)
+        else:
+            return NotImplemented
 
     def __neg__(self):
         return polye(self.poly, map(neg, self.l))
@@ -67,9 +74,7 @@ class polye:
             return list(map(lambda x: x * c, l))
 
     def __mul__(self, other):
-        if isinstance(other, zzne):
-            return polye(self.poly, polye._mulConst(other, self.l, self.poly.field))
-        elif isinstance(other, polye):
+        if isinstance(other, polye):
             acc = [self.poly.field.zero]
             l1 = list(other.l)
             l1.reverse()
@@ -80,6 +85,8 @@ class polye:
                 l2 = [self.poly.field.zero] + l2
             self.normalize(acc)
             return polye(self.poly, acc)
+        elif self.poly.field == other.field:
+            return polye(self.poly, polye._mulConst(other, self.l, self.poly.field))
         else:
             return NotImplemented
 
@@ -144,3 +151,11 @@ class polye:
         if len(self.l) != 1:
             raise Exception("Impossible!")
         return self.l[0]
+
+    def at(self, x):
+        acc = self.poly.field.zero
+        m = self.poly.field.one
+        for t in self.l:
+            acc = acc + t * m
+            m = m * x
+        return acc
