@@ -31,11 +31,14 @@ class finFieldE:
     def __sub__(self, other):
         return self + (-other)
 
+    def __rsub__(self, other):
+        return self.__sub__(other)
+
     def __mul__(self, other):
         if isinstance(other, finFieldE):
             return finFieldE(divmod(self.x * other.x, self.field.N)[1], self.field)
         elif isinstance(other, zzne):
-            return finFieldE(self.x * self.field.N.poly.of([other]), self.field)
+            return finFieldE(self.x * other, self.field)
         return NotImplemented
 
     def __rmul__(self, other):
@@ -90,6 +93,14 @@ class finFieldE:
             return self.x == other
         return NotImplemented
 
+    # convert field element to int
+    def __int__(self):
+        acc = 0
+        m = 1
+        for t in self.x.l:
+            acc = acc + m * int(t)
+            m = m * self.field.N.poly.field.N
+        return acc
 
     def __str__(self):
         return '{}'.format(self.x)

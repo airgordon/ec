@@ -22,8 +22,8 @@ class tortion:
         return t
 
     def __init__(self, ec, r, exField):
-        if ec.field.char() ** tortion.k(r, ec.field.char()) != exField.char():
-            raise Exception('Not a valid field extension ({} {})'.format(tortion.k(r, ec.field.char()), len(exField.N.l))
+        if len(ec.field) ** tortion.k(r, len(ec.field)) != len(exField):
+            raise Exception('Not a valid field extension ({} {})'.format(tortion.k(r, len(ec.field)), len(exField.N.l))
 )
         self.ec = ec
         self.r = r

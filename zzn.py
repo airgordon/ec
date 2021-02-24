@@ -16,6 +16,9 @@ class zzn:
     def char(self):
         return self.N
 
+    def __len__(self):
+        return self.N
+
     def of(self, x):
         if x < 0 or x >= self.N:
             raise Exception
@@ -37,9 +40,9 @@ class zzn:
     def init_log(self):
         self._log = {}
         p = self.one
-        for i in range(0, self.char()):
+        for i in range(0, len(self)):
             self._log[p] = i
             p = p * self.G
 
-        if len(self._log) != self.char() - 1:
+        if len(self._log) != len(self) - 1:
             raise Exception("Not a generator")

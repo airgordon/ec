@@ -16,7 +16,7 @@ class finField:
         self._sqrt = None
         self._log = None
         if G is None:
-            self.G = finFieldE(N.poly.of([N.poly.field.one, N.poly.field.zero]), self)
+            self.G = finFieldE(N.poly.u, self)
         else:
             self.G = G
 
@@ -28,8 +28,11 @@ class finField:
             raise Exception("Remainder should be zero")
         return finFieldE(x, self)
 
+    def __len__(self):
+        return len(self.N.poly.field) ** abs(self.N)
+
     def char(self):
-        return self.N.poly.field.char() ** abs(self.N)
+        return self.N.poly.field.char()
 
     def generator(self):
         for x in self.N.poly.gen(to=abs(self.N)):
