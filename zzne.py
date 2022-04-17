@@ -1,4 +1,5 @@
 class zzne:
+
     @staticmethod
     def invert(x, N):
         res = pow(x, N - 2, N)
@@ -46,7 +47,7 @@ class zzne:
         if isinstance(other, zzne):
             return zzne(divmod(self.x * other.x, self.N)[1], self.field)
         elif isinstance(other, int):
-            return self * zzne(other, self.field)
+            return zzne(divmod(self.x * other, self.N)[1], self.field)
         else:
             return NotImplemented
 

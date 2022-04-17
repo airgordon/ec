@@ -2,21 +2,19 @@ import time
 
 from matrix import matrix
 from poly2 import poly
-from Fourier import ft
 
+class ReedSolomonFast:
 
-class ReedSolomon:
-
-    def _calcVandermondeMatrix(self):
+    def _calcMatrix(self):
 
         deg = self.k + self.e
+        acc = self.poly.one
         res = [[] for _ in range(0, self.n)]
 
-        for i in range(0, self.n):
-            acc = self.poly.field.one
-            for j in range(0, deg):
-                res[i].append(acc)
-                acc = acc * self.a[i]
+        for j in range(0, deg):
+            for i in range(0, self.n):
+                res[i].append(acc.at(self.a[i]))
+            acc = acc * self.poly.u
 
         return matrix(res, self.field)
 
@@ -28,9 +26,8 @@ class ReedSolomon:
         self.e = (n - k) // 2
 
         self.a = [field.G ** i for i in range(0, n)]
-
         start_time = time.time()
-        self.V = self._calcVandermondeMatrix()
+        self.M = self._calcMatrix()
         print(f'_calcMatrix took {time.time() - start_time}')
 
     def int2field(self, x):
@@ -42,18 +39,11 @@ class ReedSolomon:
     def encode(self, m_int):
         if not len(m_int) == self.k:
             raise Exception("")
-        m_field = list(map(self.int2field, m_int))
 
-        start_time = time.time()
-        m = self.poly._of(m_field)
+        m = self.poly._of(list(map(self.int2field, m_int)))
         s = list(map(int, map(m.at, self.a)))
-        print(f'encode simple took {time.time() - start_time}')
-
-        start_time = time.time()
-        s1 = list(map(int, ft(m_field, K=self.n)))
-        print(f'encode ft took {time.time() - start_time}')
-
         return s
+
 
     def solutionMatrix(self, r, M):
         rows = []
@@ -79,13 +69,12 @@ class ReedSolomon:
 
         r = list(map(self.int2field, r_int))
 
-        S = self.solutionMatrix(r, self.V)
+        S = self.solutionMatrix(r, self.M)
 
         v = [self.field.zero] * self.n + [self.field.one]
 
         h = S.solve(v)
 
-        print(S * h)
 
         D = h[0:self.e + 1]
         Q = h[self.e + 1:self.k + 2 * self.e + 1]

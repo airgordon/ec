@@ -1,4 +1,3 @@
-
 class matrix:
     def __init__(self, rows, field):
         self.rows = rows
@@ -60,33 +59,36 @@ class matrix:
             M[i].append(f[i])
 
         C = C + 1
-        i = 0
+        i = 0  # количество ненулевых строк, количество обработанных строк
 
         leadColumns = []
 
-        for l in range(0, R):
-            nonZeroIdx = None
+        for c in range(0, C - 1):  ## ??????? for c in range(0, R):
+
+            nonZeroRowIdx = None
+            nonZeroColumnIdx = None
             for j in range(i, R):
-                if M[j][l]:
-                    nonZeroIdx = j
+                if M[j][c]:
+                    nonZeroRowIdx = j
+                    nonZeroColumnIdx = c  ## было nonZeroColumnIdx = j
                     break
 
-            if nonZeroIdx == None:
+            if nonZeroColumnIdx == None:
                 continue
 
-            leadColumns.append(nonZeroIdx)
+            leadColumns.append(nonZeroColumnIdx)
 
             # если в i-той строке на диагонале ноль - меняем её с другой
-            if i != nonZeroIdx:  # swap
+            if i != nonZeroRowIdx:  # swap
                 zeroRow = M[i]
-                nZeroRow = M[nonZeroIdx]
+                nZeroRow = M[nonZeroRowIdx]
                 M[i] = nZeroRow
-                M[nonZeroIdx] = zeroRow
+                M[nonZeroRowIdx] = zeroRow
 
             # нормируем диагональный элемент на единицу
-            if M[i][l] != self.field.one:
-                h = ~M[i][l]
-                for j in range(l, C):
+            if M[i][c] != self.field.one:
+                h = ~M[i][c]
+                for j in range(c, C):
                     M[i][j] = h * M[i][j]
 
             # обнуляем столбец во всех строках, под этой
@@ -103,14 +105,14 @@ class matrix:
                 raise Exception("System is not solvable")
 
         for i in range(len(leadColumns) - 1, 0, -1):
-            l = leadColumns[i]
+            c = leadColumns[i]
             for j in range(0, i):
-                g = M[j][l]
+                g = M[j][c]
                 # M[j][i] = self.field.zero
-                for k in range(l, C):  # for k in range(i + 1, n):
+                for k in range(c, C):  # for k in range(i + 1, n):
                     M[j][k] = M[j][k] - M[i][k] * g
 
-        res = [self.field.zero] * R
+        res = [self.field.zero] * (C - 1)
         for i in range(0, len(leadColumns)):
             res[leadColumns[i]] = M[i][C - 1]
 

@@ -1,4 +1,5 @@
 from functools import reduce
+from operator import add
 
 
 def h2i(x):
@@ -10,7 +11,7 @@ def endianRevert(x):
     l = list(map(''.join, zip(*[iter(normStr)] * 2)))
     #print(l)
     #print(l[::-1])
-    bigEndianStr = reduce((lambda x, y: x + y), l[::-1])
+    bigEndianStr = reduce(add, l[::-1])
     return bigEndianStr
 
 

@@ -2,12 +2,11 @@ from typing import List
 
 from finFieldE import finFieldE
 from polye import polye
-from zzne import zzne
+from Utills import distPrimes
 
 
 class finField:
-
-    def __init__(self, N, G = None):
+    def __init__(self, N, G=None):
         if abs(N) <= 0:
             raise Exception("Modulo degree should not be zero")
         self.N = N
@@ -15,10 +14,21 @@ class finField:
         self.one = finFieldE(N.poly.one, self)
         self._sqrt = None
         self._log = None
-        if G is None:
-            self.G = finFieldE(N.poly.u, self)
-        else:
-            self.G = G
+        self.G = self.getPrimitive()
+
+    def getPrimitive(self):
+        N = len(self.N.poly.field) ** abs(self.N)
+        pows = list(map(lambda x: N // x, distPrimes(N - 1)))
+        irredusables = self.N.poly.irredusable(abs(self.N))
+        for elem in irredusables:
+            fieldElem = finFieldE(elem, self)
+            isPrimitive = True
+            for p in pows:
+                if fieldElem ** p == self.one:
+                    isPrimitive = False
+                    break
+            if isPrimitive:
+                return fieldElem
 
     def of(self, x):
         if not isinstance(x, polye):
@@ -56,3 +66,21 @@ class finField:
 
         if len(self._log) != self.char() - 1:
             raise Exception("Not a generator")
+
+    def fromInt(self, x):
+        if x == 0:
+            return (0, self.zero)
+        acc = []
+        for i in range(0, abs(self.N)):
+            (x, mod) = self.N.poly.field.fromInt(x)
+            acc.append(mod)
+
+        self.N.normalize(acc)
+        p = self.N.poly._of(acc)
+        return (x, finFieldE(p, self))
+
+    def __str__(self):
+        return f'GF({len(self.N.poly.field)}^{abs(self.N)})'
+
+    def __repr__(self):
+        return f'GF({len(self.N.poly.field)}^{abs(self.N)})'

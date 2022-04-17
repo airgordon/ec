@@ -1,8 +1,12 @@
 from zzne import zzne
+from Utills import isPrime
 
 
 class zzn:
+
     def __init__(self, N, G=None):
+        if not isPrime(N):
+            raise Exception("{} is not a prime number".format(N))
         self.N = N
         self.zero = self.of(0)
         self.one = self.of(1)
@@ -12,6 +16,8 @@ class zzn:
             self.G = N - 1
         else:
             self.G = G
+
+
 
     def char(self):
         return self.N
@@ -46,3 +52,13 @@ class zzn:
 
         if len(self._log) != len(self) - 1:
             raise Exception("Not a generator")
+
+    def fromInt(self, x):
+        (div, mod) = divmod(x, self.N)
+        return (div, zzne(mod, self))
+
+    def __str__(self):
+        return f'zzn({self.N})'
+
+    def __repr__(self):
+        return f'zzn({self.N})'

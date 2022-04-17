@@ -1,5 +1,5 @@
 from functools import reduce
-from operator import neg
+from operator import neg, add
 from itertools import zip_longest
 
 import math
@@ -145,7 +145,7 @@ class polye:
 
     def __getitem__(self, x):
         pows = map(lambda t: t[1] * x ** t[0], enumerate(self.l))
-        return reduce(lambda q, r: q + r, pows)
+        return reduce(add, pows)
 
     def asFieldElement(self):
         if len(self.l) != 1:

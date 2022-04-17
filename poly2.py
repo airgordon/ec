@@ -16,6 +16,9 @@ class poly:
     def of(self, l):
         return polye(self, reversed(list(l)))
 
+    def _of(self, l):
+        return polye(self, list(l))
+
     def _gen(self, normalized=False):
         yield self.zero
         l = list([self.field.one])
