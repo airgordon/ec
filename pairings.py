@@ -31,8 +31,8 @@ def Weil_2(P, Q, R, S, r):
     return pairing
 
 
-def Weil_3(P, Q, R, S, r):
-    zz = ec.field
+def Weil_3(P, Q, R, S, r): # TODO : fix me
+    zz = P.ec.field
     pl = poly(zz)
     mil = millersF(P.ec, pl)
 

@@ -103,8 +103,8 @@ class finFieldE:
         return acc
 
     def __str__(self):
-        return '{}'.format(int(self))
+        return '{}'.format(self.x)
 
     def __repr__(self):
-        return '{}'.format(int(self))
+        return '{}'.format(self.x)
 

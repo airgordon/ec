@@ -46,19 +46,6 @@ class millersF:
         p = [-k, -b] if k else [-b]  # todo убрать эту срань !!
         return millersFe(self.poly.of(p), self.poly.one, self.poly.one, self.poly.zero, self)
 
-    # def _divisor(self, P, m):
-    #     if m == 1:
-    #         return self.one
-    #
-    #     (q, r) = divmod(m, 2)
-    #
-    #     f = self._divisor(P, q) * self._divisor(P, q) * self.line(q * P, q * P) * self.vertical(2 * q * P)
-    #
-    #     if r:
-    #         return f * (self.line(P, (m - 1) * P) * self.vertical(m * P))
-    #     else:
-    #         return f
-
     def _mfunc(self, P, m, x):
         if m == 1:
             return self.one[x]
@@ -67,7 +54,7 @@ class millersF:
 
         f_m_2 = self._mfunc(P, q, x)
 
-        # sq = map(lambda x: x * x, f_m_2)
+
         d = self.line(q * P, q * P)[x] * self.vertical(2 * q * P)[x]
 
         if r:
@@ -93,5 +80,5 @@ class millersF:
 
         if P + T:
             raise Exception()
-        f = f * (self.line(P, T))
+        f = f * self.line(P, T)
         return f
