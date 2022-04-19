@@ -1,6 +1,6 @@
-from ece import ece
-from poly2 import poly
-from zzn import zzn
+from algebra.poly2 import poly
+from algebra.zzn import zzn
+from ec.ece import ece
 
 
 class ec:

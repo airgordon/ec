@@ -1,7 +1,7 @@
 import time
 
-from matrix import matrix
-from poly2 import poly
+from algebra.matrix import matrix
+from algebra.poly2 import poly
 
 class ReedSolomonFast:
 

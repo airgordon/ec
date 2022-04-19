@@ -1,4 +1,4 @@
-from ece import ece
+from ec.ece import ece
 
 
 class morph:

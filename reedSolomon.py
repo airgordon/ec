@@ -1,8 +1,8 @@
 import time
 
-from matrix import matrix
-from poly2 import poly
-from Fourier import ft
+from algebra.matrix import matrix
+from algebra.poly2 import poly
+from algebra.Fourier import ft
 
 
 class ReedSolomon:

@@ -1,7 +1,7 @@
 from itertools import takewhile
 from math import inf
 
-from polye import polye
+from algebra.polye import polye
 
 
 class poly:

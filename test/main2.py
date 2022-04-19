@@ -1,8 +1,8 @@
-from ecs import *
-from finField import finField
-from millersF import millersF
-from poly2 import poly
-from pairings import Weil_1, Weil_2, Weil_3
+from ec.ecs import *
+
+from algebra.finField import finField
+from algebra.poly2 import poly
+from ec.pairings import Weil_1, Weil_2
 
 ec = beginners5_1_1()
 
@@ -24,22 +24,6 @@ sy = ff2.of(p.of([zzz.of(13), zzz.of(13)]))
 S = ec.of(rx, ry)
 R = ec.of(sx, sy)
 
-
-def Weil(P, Q, R, S, r):
-    zz = P.ec.field
-    pl = poly(zz)
-    mil = millersF(P.ec, pl)
-
-    fp = mil.mfunc_slow(P, r)
-    fq = mil.mfunc_slow(Q, r)
-
-    f = fp * (mil.line(P, R) * mil.vertical(P + R)) ** (-r)
-    g = fq * (mil.line(Q, S) * mil.vertical(Q + S)) ** (-r)
-
-    pairing = f[Q + S] * g[R] / (f[S] * g[P + R])
-    return pairing
-
-
 def test(weil):
     ex1 = ff2.of(p.of([zzz.of(15), zzz.of(11)]))
     if weil(P, Q, R, S, 3) != ex1:
@@ -60,7 +44,5 @@ def test(weil):
         raise Exception("Test failed")
 
 
-test(Weil)
 test(Weil_1)
 test(Weil_2)
-test(Weil_3)

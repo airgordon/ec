@@ -1,5 +1,5 @@
-from zzne import zzne
-from Utills import isPrime
+from algebra.zzne import zzne
+from algebra.Utills import isPrime
 
 
 class zzn:

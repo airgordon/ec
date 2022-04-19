@@ -1,8 +1,8 @@
 from typing import List
 
-from finFieldE import finFieldE
-from polye import polye
-from Utills import distPrimes
+from algebra.finFieldE import finFieldE
+from algebra.polye import polye
+from algebra.Utills import distPrimes
 
 
 class finField:

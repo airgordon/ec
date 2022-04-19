@@ -1,6 +1,6 @@
 import operator
 from functools import reduce
-from Utills import distPrimes
+from algebra.Utills import distPrimes
 
 
 def ft2(x, a=None):

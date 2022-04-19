@@ -1,5 +1,5 @@
 # y**2 = x**3 + a*x + b
-from zzne import zzne
+from algebra.zzne import zzne
 
 
 class ece:

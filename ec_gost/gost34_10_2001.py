@@ -1,4 +1,4 @@
-from zzne import zzne
+from algebra.zzne import zzne
 
 
 class gost34_10_2001:

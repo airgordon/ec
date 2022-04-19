@@ -1,10 +1,7 @@
-import time
-
-from zzn import zzn
-from finField import finField
-from poly2 import poly
+from algebra.zzn import zzn
+from algebra.finField import finField
+from algebra.poly2 import poly
 from reedSolomon import ReedSolomon
-from Fourier import ft, ft2
 
 Bit = zzn(2)
 bitPoly = poly(Bit)

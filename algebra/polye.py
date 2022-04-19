@@ -4,8 +4,8 @@ from itertools import zip_longest
 
 import math
 
-from Utills import list_hash
-from zzne import zzne
+from algebra.Utills import list_hash
+from algebra.zzne import zzne
 
 
 class polye:
@@ -143,7 +143,7 @@ class polye:
     def __repr__(self):
         return self.__str__()
 
-    def __getitem__(self, x):
+    def __call__(self, x):
         pows = map(lambda t: t[1] * x ** t[0], enumerate(self.l))
         return reduce(add, pows)
 

@@ -1,7 +1,7 @@
-from euqlid import gcd
+from algebra.euqlid import gcd
 
 
-class millersFe:
+class rationalFncE:
 
     def __init__(self, x, y, rx, ry, millersF):
         self.x = x
@@ -29,7 +29,7 @@ class millersFe:
         rx = divmod(rx, g_rx_ry_y_x)[0]
         ry = divmod(ry, g_rx_ry_y_x)[0]
 
-        return millersFe(x, y, rx, ry, self.millersF)
+        return rationalFncE(x, y, rx, ry, self.millersF)
 
     def __pow__(self, other):
         if not isinstance(other, int):
@@ -49,14 +49,14 @@ class millersFe:
             return (self * self) ** r * self
 
     def __invert__(self):
-        return millersFe(self.rx, self.ry, self.x, self.y, self.millersF)
+        return rationalFncE(self.rx, self.ry, self.x, self.y, self.millersF)
 
     def __truediv__(self, other):
         return self * ~other
 
-    def __getitem__(self, P):
+    def __call__(self, P):
         x = P.x
         y = P.y
-        q = self.x[x] + y * self.y[x]
-        r = self.rx[x] + y * self.ry[x]
+        q = self.x(x) + y * self.y(x)
+        r = self.rx(x) + y * self.ry(x)
         return q / r

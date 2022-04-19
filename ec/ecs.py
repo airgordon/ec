@@ -1,6 +1,6 @@
-from ec import ec
-from hex import h2i
-from zzn import zzn
+from algebra.zzn import zzn
+from ec.ec import ec
+from ec_gost.hex import h2i
 
 
 def bitcoin():

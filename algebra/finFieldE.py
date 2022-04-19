@@ -1,10 +1,9 @@
-from euqlid import gcd
-from polye import polye
-from zzne import zzne
+from algebra.euqlid import gcd
+from algebra.polye import polye
+from algebra.zzne import zzne
 
 
 class finFieldE:
-
     def __init__(self, x, field):
         if not isinstance(x, polye):
             raise Exception('{}'.format(x))
@@ -86,6 +85,9 @@ class finFieldE:
     def __truediv__(self, other):
         return self * ~other
 
+    def __rtruediv__(self, other):
+        return other * ~self
+
     def __eq__(self, other):
         if isinstance(other, finFieldE):
             return self.x == other.x
@@ -107,4 +109,3 @@ class finFieldE:
 
     def __repr__(self):
         return '{}'.format(self.x)
-
