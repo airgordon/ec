@@ -8,19 +8,12 @@ class rationalFnc:
         self.poly = poly
         self.one = rationalFncE(self.poly.one, self.poly.zero, self.poly.one, self.poly.zero, self)
 
-    def of(self, x, y, r):
-        raise Exception()
-        return rationalFncE(x, y, r, self)
-
     def vertical(self, p):
-        if not p:
-            raise Exception("p is Zero")
-
         return self.line(-p, p)
 
     def line(self, u, v):
         if not u and not v:
-            raise Exception("u and v is Zero")
+            return self.one
         if not v:
             return rationalFncE(self.poly.of([self.poly.field.one, -u.x]), self.poly.zero, self.poly.one, self.poly.zero,
                                 self)
@@ -63,8 +56,29 @@ class rationalFnc:
 
         return f_m_2 * f_m_2 * d
 
+    def _mfunc2(self, P, m, x):
+        if m == 1:
+            return self.one(x), P
+
+        (q, r) = divmod(m, 2)
+
+        f_m_2, qP = self._mfunc2(P, q, x)
+
+        q2P = qP + qP
+
+        d = self.line(qP, qP)(x) / self.vertical(q2P)(x)
+
+        if r:
+            mP = q2P + P
+            d = d * (self.line(P, q2P)(x) / self.vertical(mP)(x))
+        else:
+            mP = q2P
+
+        return f_m_2 * f_m_2 * d, mP
+
     def mfunc(self, P, r, x):
-        f = self._mfunc(P, r - 1, x)
+        f, _ = self._mfunc2(P, r - 1, x)
+        # f = self._mfunc(P, r - 1, x)
         d = self.line(P, -P)
         return f * d(x)
 

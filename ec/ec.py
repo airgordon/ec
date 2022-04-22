@@ -12,6 +12,7 @@ class ec:
         self.a = a
         self.b = b
 
+        self.Z = None
         self.Z = ece(self)
 
         if G is not None:

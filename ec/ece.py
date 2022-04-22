@@ -4,7 +4,7 @@ from algebra.zzne import zzne
 
 class ece:
     def __init__(self, eCurve, x=None, y=None):
-        if not type(eCurve).__name__ is "ec":
+        if type(eCurve).__name__ != "ec":
             raise Exception
 
         self.ec = eCurve
@@ -17,6 +17,9 @@ class ece:
         if (x is None) or (y is None):
             if not (x is None) and (y is None):
                 raise Exception("Zero must not have coordinates")
+
+            if eCurve.Z is not None:
+                raise Exception("Zero must be unique")
 
             self.isZero = True
             return
@@ -35,7 +38,7 @@ class ece:
             return self
 
         if self.x == other.x and self.y == -other.y:
-            return ece(self.ec)
+            return self.ec.Z
 
         _2 = zzne(2, self.ec.field)
         _3 = zzne(3, self.ec.field)
@@ -50,9 +53,9 @@ class ece:
         return ece(self.ec, xn, -yn)
 
     def __neg__(self):
-        if self:
-            return ece(self.ec, self.x, -self.y)
-        return ece(self.ec)
+        if self.isZero:
+            return self
+        return ece(self.ec, self.x, -self.y)
 
     def __mul__(self, other):
         if not isinstance(other, int):
@@ -63,10 +66,8 @@ class ece:
         else:
             it = self
 
-        # other = other % it.ec.n
-
         if other == 0:
-            return ece(it.ec)
+            return it.ec.Z
         if other == 1:
             return it
 

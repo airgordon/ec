@@ -28,10 +28,10 @@ def Weil_2(P, Q, R, S, r):
     pl = poly(zz)
     mil = rationalFnc(P.ec, pl)
 
-    f_QS = mil.mfunc(P, r, Q + S) * ((mil.line(P, R)(Q + S) / mil.vertical(P + R)(Q + S)) ** (-r))
-    f_S = mil.mfunc(P, r, S) * ((mil.line(P, R)(S) / mil.vertical(P + R)(S)) ** (-r))
-    g_R = mil.mfunc(Q, r, R) * ((mil.line(Q, S)(R) / mil.vertical(Q + S)(R)) ** (-r))
-    g_PR = mil.mfunc(Q, r, P + R) * ((mil.line(Q, S)(P + R) / mil.vertical(Q + S)(P + R)) ** (-r))
+    f_QS = mil.mfunc(P, r, Q + S) / (mil.line(P, R)(Q + S) / mil.vertical(P + R)(Q + S)) ** r
+    g_PR = mil.mfunc(Q, r, P + R) / (mil.line(Q, S)(P + R) / mil.vertical(Q + S)(P + R)) ** r
+    f_S = mil.mfunc(P, r, S) / (mil.line(P, R)(S) / mil.vertical(P + R)(S)) ** r
+    g_R = mil.mfunc(Q, r, R) / (mil.line(Q, S)(R) / mil.vertical(Q + S)(R)) ** r
 
     pairing = f_QS * g_R / (f_S * g_PR)
     return pairing

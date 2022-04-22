@@ -14,18 +14,15 @@ class polye:
         self.l = list(l)
         self.checkNorm()
 
-    def __bool__(self):
-        return self != self.poly.zero
-
     def __abs__(self):
         if not self:
-            return -math.inf
+            return -1
         return len(self.l) - 1
 
     def checkNorm(self):
-        if (not self.l):
+        if not self.l:
             raise Exception("Empty poly")
-        if (abs(self) > 0 and self.l[-1] == self.poly.field.zero):
+        if abs(self) > 0 and self.l[-1] == self.poly.field.zero:
             raise Exception("Not a normalized poly")
 
     def normalize(self, l):

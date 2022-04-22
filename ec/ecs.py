@@ -1,3 +1,5 @@
+from algebra.finField import finField
+from algebra.poly2 import poly
 from algebra.zzn import zzn
 from ec.ec import ec
 from ec_gost.hex import h2i
@@ -232,6 +234,15 @@ def beginners5_1_1():
     b = field.zero
 
     return ec(field, a, b, None, None)
+
+def beginners5_2_1():
+    N = 5
+
+    zzz = zzn(N)
+    a = zzz.zero
+    b = zzz.of(2)
+
+    return ec(zzz, a, b, None, None)
 
 
 def beginners5_3_1():

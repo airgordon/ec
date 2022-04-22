@@ -24,6 +24,7 @@ sy = ff2.of(p.of([zzz.of(13), zzz.of(13)]))
 S = ec.of(rx, ry)
 R = ec.of(sx, sy)
 
+
 def test(weil):
     ex1 = ff2.of(p.of([zzz.of(15), zzz.of(11)]))
     if weil(P, Q, R, S, 3) != ex1:

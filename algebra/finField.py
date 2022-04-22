@@ -18,8 +18,9 @@ class finField:
 
     def getPrimitive(self):
         N = len(self.N.poly.field) ** abs(self.N)
-        pows = list(map(lambda x: N // x, distPrimes(N - 1)))
-        irredusables = self.N.poly.irredusable(abs(self.N))
+        mulGroupSize = N - 1
+        pows = list(map(lambda x: mulGroupSize // x, distPrimes(mulGroupSize)))
+        irredusables = self.N.poly.irredusable(1)
         for elem in irredusables:
             fieldElem = finFieldE(elem, self)
             isPrimitive = True
