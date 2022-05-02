@@ -136,9 +136,9 @@ def secp128r1():
 
 # Pairings for beginners
 def beginners():
-    N = 11
+    q = 11
 
-    field = zzn(N)
+    field = zzn(q)
     a = field.of(4)
     b = field.of(3)
 
@@ -150,9 +150,9 @@ def beginners():
 
 
 def beginners2_2_5():
-    N = 67
+    q = 67
 
-    field = zzn(N)
+    field = zzn(q)
     a = field.of(4)
     b = field.of(3)
 
@@ -164,9 +164,9 @@ def beginners2_2_5():
 
 
 def beginners2_2_6():
-    N = 19
+    q = 19
 
-    field = zzn(N)
+    field = zzn(q)
     a = field.of(0)
     b = field.of(5)
 
@@ -174,11 +174,22 @@ def beginners2_2_6():
 
     return ec(field, a, b, None, n)
 
+def beginners3_1_1():
+    q = 103
+
+    field = zzn(q)
+    a = field.of(20)
+    b = field.of(20)
+
+    n = None
+
+    return ec(field, a, b, None, n)
+
 
 def beginners4_0_1():
-    N = 7691
+    q = 7691
 
-    field = zzn(N)
+    field = zzn(q)
     a = field.of(0)
     b = field.of(1)
 
@@ -188,9 +199,9 @@ def beginners4_0_1():
 
 
 def beginners4_1_1():
-    N = 11
+    q = 11
 
-    field = zzn(N)
+    field = zzn(q)
     a = field.of(0)
     b = field.of(4)
 
@@ -200,9 +211,9 @@ def beginners4_1_1():
 
 
 def beginners4_1_3():
-    N = 11
+    q = 11
 
-    field = zzn(N)
+    field = zzn(q)
     a = field.of(7)
     b = field.of(2)
 
@@ -217,9 +228,9 @@ def beginners4_1_3():
 
 
 def beginners5_0_1():
-    N = 23
+    q = 23
 
-    field = zzn(N)
+    field = zzn(q)
     a = field.of(17)
     b = field.of(6)
 
@@ -227,28 +238,28 @@ def beginners5_0_1():
 
 
 def beginners5_1_1():
-    N = 23
+    q = 23
 
-    field = zzn(N)
+    field = zzn(q)
     a = -field.one
     b = field.zero
 
     return ec(field, a, b, None, None)
 
 def beginners5_2_1():
-    N = 5
+    q = 5
 
-    zzz = zzn(N)
+    zzz = zzn(q)
     a = zzz.zero
-    b = zzz.of(2)
+    b = zzz.of(-3)
 
     return ec(zzz, a, b, None, None)
 
 
 def beginners5_3_1():
-    N = 47
+    q = 47
 
-    field = zzn(N)
+    field = zzn(q)
     a = field.of(21)
     b = field.of(15)
 

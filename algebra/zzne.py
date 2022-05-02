@@ -1,3 +1,4 @@
+
 class zzne:
 
     @staticmethod
@@ -7,16 +8,17 @@ class zzne:
             raise Exception('There is no inverse of {} over {}'.format(x, N))
         return res
 
+    __slots__ = ("x", "field")
+
     def __init__(self, x, field):
         if not isinstance(x, int):
             raise Exception('{}'.format(x))
 
         self.x = x % field.N
         self.field = field
-        self.N = field.N
 
-        if x < 0 or x >= self.N:
-            raise ValueError('{} is out of bound of this zzn: [0, {})'.format(x, self.N))
+        if x < 0 or x >= self.field.N:
+            raise ValueError('{} is out of bound of this zzn: [0, {})'.format(x, self.field.N))
 
     def __bool__(self):
         return self.x != 0
@@ -26,14 +28,14 @@ class zzne:
 
     def __add__(self, other):
         if isinstance(other, zzne):
-            return zzne(divmod(self.x + other.x, self.N)[1], self.field)
+            return zzne(divmod(self.x + other.x, self.field.N)[1], self.field)
         elif isinstance(other, int):
             return self + zzne(other, self.field)
         else:
             return NotImplemented
 
     def __neg__(self):
-        return zzne(divmod(self.N - self.x, self.N)[1], self.field)
+        return zzne(divmod(self.field.N - self.x, self.field.N)[1], self.field)
 
     def __sub__(self, other):
         if isinstance(other, zzne):
@@ -45,9 +47,9 @@ class zzne:
 
     def __mul__(self, other):
         if isinstance(other, zzne):
-            return zzne(divmod(self.x * other.x, self.N)[1], self.field)
+            return zzne(divmod(self.x * other.x, self.field.N)[1], self.field)
         elif isinstance(other, int):
-            return zzne(divmod(self.x * other, self.N)[1], self.field)
+            return zzne(divmod(self.x * other, self.field.N)[1], self.field)
         else:
             return NotImplemented
 
@@ -82,7 +84,7 @@ class zzne:
         return self.field._log[self]
 
     def __invert__(self):
-        return zzne(zzne.invert(self.x, self.N), self.field)
+        return zzne(zzne.invert(self.x, self.field.N), self.field)
 
     def __truediv__(self, other):
         if isinstance(other, zzne):

@@ -17,8 +17,6 @@ class zzn:
         else:
             self.G = G
 
-
-
     def char(self):
         return self.N
 
@@ -26,9 +24,14 @@ class zzn:
         return self.N
 
     def of(self, x):
-        if x < 0 or x >= self.N:
-            raise Exception
-        return zzne(x, self)
+        if 0 <= x < self.N:
+            return zzne(x, self)
+        if -self.N < x < 0:
+            return zzne(self.N + x, self)
+        raise Exception
+
+    def __call__(self, x):
+        return self.of(x)
 
     def generator(self):
         for i in range(0, self.N):

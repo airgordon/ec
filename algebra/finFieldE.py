@@ -4,6 +4,9 @@ from algebra.zzne import zzne
 
 
 class finFieldE:
+
+    __slots__ = ("x", "field")
+
     def __init__(self, x, field):
         if not isinstance(x, polye):
             raise Exception('{}'.format(x))

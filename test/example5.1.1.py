@@ -2,7 +2,7 @@ from ec.ecs import *
 
 from algebra.finField import finField
 from algebra.poly2 import poly
-from ec.pairings import Weil_1, Weil_2
+from ec.pairings import Weil_slow, Weil_no_rec
 
 ec = beginners5_1_1()
 
@@ -45,5 +45,5 @@ def test(weil):
         raise Exception("Test failed")
 
 
-test(Weil_1)
-test(Weil_2)
+test(Weil_slow)
+test(Weil_no_rec)

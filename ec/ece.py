@@ -3,13 +3,13 @@ from algebra.zzne import zzne
 
 
 class ece:
+    __slots__ = ("ec", "x", "y", "isZero")
+
     def __init__(self, eCurve, x=None, y=None):
         if type(eCurve).__name__ != "ec":
             raise Exception
 
         self.ec = eCurve
-        self.a = eCurve.a
-        self.b = eCurve.b
 
         self.x = x
         self.y = y
@@ -46,7 +46,7 @@ class ece:
         if self != other:
             k = (self.y - other.y) / (self.x - other.x)
         else:
-            k = (_3 * self.x * self.x + self.a) / (_2 * self.y)
+            k = (_3 * self.x * self.x + self.ec.a) / (_2 * self.y)
 
         xn = k * k - self.x - other.x
         yn = k * (xn - self.x) + self.y
@@ -104,9 +104,19 @@ class ece:
 
     def check(self):
         x = self.x
+        self._check_field(x)
         y = self.y
-        if y * y != x * x * x + self.a * x + self.b:
+        self._check_field(y)
+        if y * y != x * x * x + self.ec.a * x + self.ec.b:
             raise Exception("Not ec point")
+
+    def _check_field(self, x):
+        if x.field == self.ec.field:
+            return
+        if x.field.N.poly.field == self.ec.field:
+            return
+
+        raise Exception(f'Coordinates field {x.field} do not match with ec field {self.ec.field}')
 
     def __repr__(self):
         if self.isZero:

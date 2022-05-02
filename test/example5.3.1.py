@@ -2,19 +2,23 @@ from ec.ecs import *
 from algebra.finField import finField
 from algebra.poly2 import poly
 
-from ec.pairings import Weil_1, Weil_2
+from ec.pairings import Weil_slow, Weil_no_rec, Weil_no_rec_no_mul, Weil_no_mul
 
 ec = beginners5_3_1()
 
 zzz = ec.field
 p = poly(zzz)
+u = p.u
+u2 = u * u
+u3 = u * u * u
+u4 = u * u * u * u
 
-ff = finField(p.of([zzz.of(1), zzz.of(0), zzz.of(zzz.N - 4), zzz.of(0), zzz.of(5)]))
+ff = finField(u4 - u2 * 4 + 5)
 
-P = ec.of(zzz.of(45), zzz.of(23))
+P = ec.of(zzz(45), zzz(23))
 
-qx = p.of([zzz.of(31), zzz.of(0), zzz.of(29)])
-qy = p.of([zzz.of(35), zzz.of(0), zzz.of(11), zzz.of(0)])
+qx = u2 * 31 + 29
+qy = u3 * 35 + u * 11
 
 Q = ec.of(ff.of(qx), ff.of(qy))
 
@@ -32,9 +36,9 @@ def assertTrue(ex):
 
 
 def test(weil):
-    ex1 = ff.of(p.of([zzz.of(22), zzz.of(12), zzz.of(32), zzz.of(13)]))
-    ex2 = ff.of(p.of([zzz.of(17), zzz.of(21), zzz.of(11), zzz.of(14)]))
-    ex3 = ff.of(p.of([zzz.of(9), zzz.of(26), zzz.of(22), zzz.of(4)]))
+    ex1 = ff.of(u3 * 22 + u2 * 12 + u * 32 + 13)
+    ex2 = ff.of(u3 * 17 + u2 * 21 + u * 11 + 14)
+    ex3 = ff.of(u3 * 9 + u2 * 26 + u * 22 + 4)
     ex4 = ff.one
 
     assertTrue(weil(P, Q, R, S, r) == ex1)
@@ -44,5 +48,7 @@ def test(weil):
     assertTrue(weil(7 * P, 2 * Q, R, S, r) == ex3)
     assertTrue(weil(P, Q, R, S, r) ** r == ex4)
 
-test(Weil_1)
-test(Weil_2)
+test(Weil_slow)
+test(Weil_no_mul)
+test(Weil_no_rec)
+test(Weil_no_rec_no_mul)

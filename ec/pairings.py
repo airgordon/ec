@@ -2,7 +2,7 @@ from algebra.poly2 import poly
 from ec.rationalFnc import rationalFnc
 
 
-def Weil_1(P, Q, R, S, r):
+def Weil_slow(P, Q, R, S, r):
     _checkOrder(P, r)
     _checkOrder(Q, r)
 
@@ -19,8 +19,7 @@ def Weil_1(P, Q, R, S, r):
     pairing = f(Q + S) * g(R) / (f(S) * g(P + R))
     return pairing
 
-
-def Weil_2(P, Q, R, S, r):
+def Weil_no_mul(P, Q, R, S, r):
     _checkOrder(P, r)
     _checkOrder(Q, r)
 
@@ -28,16 +27,16 @@ def Weil_2(P, Q, R, S, r):
     pl = poly(zz)
     mil = rationalFnc(P.ec, pl)
 
-    f_QS = mil.mfunc(P, r, Q + S) / (mil.line(P, R)(Q + S) / mil.vertical(P + R)(Q + S)) ** r
-    g_PR = mil.mfunc(Q, r, P + R) / (mil.line(Q, S)(P + R) / mil.vertical(Q + S)(P + R)) ** r
-    f_S = mil.mfunc(P, r, S) / (mil.line(P, R)(S) / mil.vertical(P + R)(S)) ** r
-    g_R = mil.mfunc(Q, r, R) / (mil.line(Q, S)(R) / mil.vertical(Q + S)(R)) ** r
+    f_QS = mil.mfunc_no_mul(P, r, Q + S) / (mil.line(P, R)(Q + S) / mil.vertical(P + R)(Q + S)) ** r
+    g_PR = mil.mfunc_no_mul(Q, r, P + R) / (mil.line(Q, S)(P + R) / mil.vertical(Q + S)(P + R)) ** r
+    f_S = mil.mfunc_no_mul(P, r, S) / (mil.line(P, R)(S) / mil.vertical(P + R)(S)) ** r
+    g_R = mil.mfunc_no_mul(Q, r, R) / (mil.line(Q, S)(R) / mil.vertical(Q + S)(R)) ** r
 
     pairing = f_QS * g_R / (f_S * g_PR)
     return pairing
 
 
-def Weil_3(P, Q, R, S, r): # TODO : fix me
+def Weil_no_rec(P, Q, R, S, r):
     _checkOrder(P, r)
     _checkOrder(Q, r)
 
@@ -45,16 +44,30 @@ def Weil_3(P, Q, R, S, r): # TODO : fix me
     pl = poly(zz)
     mil = rationalFnc(P.ec, pl)
 
-    fp = mil.mfunc_slow(P, r)
-    [a, b] = mil.mfunc(P, r, [Q + Q, Q])
-    fq = mil.mfunc_slow(Q, r)
-    fq2 = mil.mfunc(Q, r)
+    f_QS = mil.mfunc_no_rec(P, r, Q + S) / (mil.line(P, R)(Q + S) / mil.vertical(P + R)(Q + S)) ** r
+    g_PR = mil.mfunc_no_rec(Q, r, P + R) / (mil.line(Q, S)(P + R) / mil.vertical(Q + S)(P + R)) ** r
+    f_S = mil.mfunc_no_rec(P, r, S) / (mil.line(P, R)(S) / mil.vertical(P + R)(S)) ** r
+    g_R = mil.mfunc_no_rec(Q, r, R) / (mil.line(Q, S)(R) / mil.vertical(Q + S)(R)) ** r
 
-    f = fp * (mil.line(P, R) / mil.vertical(P + R)) ** (-r)
-    g = fq * (mil.line(Q, S) / mil.vertical(Q + S)) ** (-r)
-
-    pairing = f.apply(Q + S) * g.apply(R) / (f.apply(S) * g.apply(P + R))
+    pairing = f_QS * g_R / (f_S * g_PR)
     return pairing
+
+def Weil_no_rec_no_mul(P, Q, R, S, r):
+    _checkOrder(P, r)
+    _checkOrder(Q, r)
+
+    zz = P.ec.field
+    pl = poly(zz)
+    mil = rationalFnc(P.ec, pl)
+
+    f_QS = mil.mfunc_no_rec_no_mul(P, r, Q + S) / (mil.line(P, R)(Q + S) / mil.vertical(P + R)(Q + S)) ** r
+    g_PR = mil.mfunc_no_rec_no_mul(Q, r, P + R) / (mil.line(Q, S)(P + R) / mil.vertical(Q + S)(P + R)) ** r
+    f_S = mil.mfunc_no_rec_no_mul(P, r, S) / (mil.line(P, R)(S) / mil.vertical(P + R)(S)) ** r
+    g_R = mil.mfunc_no_rec_no_mul(Q, r, R) / (mil.line(Q, S)(R) / mil.vertical(Q + S)(R)) ** r
+
+    pairing = f_QS * g_R / (f_S * g_PR)
+    return pairing
+
 
 def _checkOrder(P, r):
     if r * P:

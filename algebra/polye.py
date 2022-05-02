@@ -9,6 +9,9 @@ from algebra.zzne import zzne
 
 
 class polye:
+
+    __slots__ = ("poly", "l")
+
     def __init__(self, poly, l):
         self.poly = poly
         self.l = list(l)
@@ -48,10 +51,15 @@ class polye:
             l = polye._add(self.l, other.l, self.poly.field.zero)
             self.normalize(l)
             return polye(self.poly, l)
-        elif self.poly.field == other.field:
+        elif isinstance(other, zzne):
+            if self.poly.field != other.field:
+                raise Exception("Not the same field")
+
             res = self.l.copy()
             res[0] = res[0] + other
             return polye(self.poly, res)
+        elif isinstance(other, int):
+            return self + self.poly.field.of(other)
         else:
             return NotImplemented
 
@@ -82,13 +90,18 @@ class polye:
                 l2 = [self.poly.field.zero] + l2
             self.normalize(acc)
             return polye(self.poly, acc)
-        elif self.poly.field == other.field:
+        elif isinstance(other, zzne):
+            if self.poly.field != other.field:
+                raise Exception("Not the same field")
+
             return polye(self.poly, polye._mulConst(other, self.l, self.poly.field))
+        elif isinstance(other, int):
+            return self * self.poly.field.of(other)
         else:
             return NotImplemented
 
     def __rmul__(self, other):
-        if isinstance(other, zzne) or isinstance(other, polye):
+        if isinstance(other, zzne) or isinstance(other, polye) or isinstance(other, int):
             return self.__mul__(other)
         return NotImplemented
 

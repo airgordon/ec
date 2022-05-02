@@ -4,20 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b9be4af3-d779-4a6f-834e-2a5e15f57cad" name="Default" comment="fix fin field representation&#10;created pairing test&#10;some refactoring&#10;check order perf fix">
-      <change afterPath="$PROJECT_DIR$/ec/Tate" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tateMain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="b9be4af3-d779-4a6f-834e-2a5e15f57cad" name="Default" comment="add __slots__&#10;remove a b from ece&#10;remove N from zzne">
+      <change afterPath="$PROJECT_DIR$/example3.1.1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/example4.0.1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/example4.0.1_performance.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algebra/finField.py" beforeDir="false" afterPath="$PROJECT_DIR$/algebra/finField.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algebra/poly2.py" beforeDir="false" afterPath="$PROJECT_DIR$/algebra/poly2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algebra/finFieldE.py" beforeDir="false" afterPath="$PROJECT_DIR$/algebra/finFieldE.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algebra/polye.py" beforeDir="false" afterPath="$PROJECT_DIR$/algebra/polye.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ec/ec.py" beforeDir="false" afterPath="$PROJECT_DIR$/ec/ec.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algebra/zzn.py" beforeDir="false" afterPath="$PROJECT_DIR$/algebra/zzn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algebra/zzne.py" beforeDir="false" afterPath="$PROJECT_DIR$/algebra/zzne.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ec/Tate" beforeDir="false" afterPath="$PROJECT_DIR$/ec/tate.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ec/ece.py" beforeDir="false" afterPath="$PROJECT_DIR$/ec/ece.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ec/ecs.py" beforeDir="false" afterPath="$PROJECT_DIR$/ec/ecs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ec/pairings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ec/pairings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ec/rationalFnc.py" beforeDir="false" afterPath="$PROJECT_DIR$/ec/rationalFnc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/main2.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/main2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ec/rationalFncE.py" beforeDir="false" afterPath="$PROJECT_DIR$/ec/rationalFncE.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tateMain.py" beforeDir="false" afterPath="$PROJECT_DIR$/tateMain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/main2.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/example5.1.1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/main3.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/example5.3.1.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,10 +220,14 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Osseum1/PycharmProjects/cr/test&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.Color Scheme Font&quot;
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Osseum1\PycharmProjects\cr\test" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Osseum1\PycharmProjects\cr\test" />
       <recent name="C:\Users\Osseum1\PycharmProjects\cr\ec_gost" />
@@ -226,7 +235,7 @@
       <recent name="C:\Users\Osseum1\PycharmProjects\cr\algebra" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.tateMain">
+  <component name="RunManager" selected="Python.example5.3.1">
     <configuration default="true" type="tests" factoryName="Attests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -246,7 +255,7 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
-    <configuration name="ReedSolomonMain2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="example3.1.1 (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="cr" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -258,7 +267,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ReedSolomonMain2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/example3.1.1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -267,7 +276,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="example4.0.1_performance" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="cr" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -279,7 +288,49 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/main.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/example4.0.1_performance.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="example5.1.1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="cr" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/example5.1.1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="example5.3.1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="cr" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/example5.3.1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -300,7 +351,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/main2.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Osseum1\PycharmProjects\cr\test\example5.1.1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -321,7 +372,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/main2.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Osseum1\PycharmProjects\cr\test\example5.1.1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -342,28 +393,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/main3.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="main3" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="cr" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/main3.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Osseum1\PycharmProjects\cr\test\example5.3.1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -384,7 +414,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/main3.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Osseum1\PycharmProjects\cr\test\example5.3.1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -405,7 +435,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/main.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Osseum1\PycharmProjects\cr\test\example4.0.1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -426,7 +456,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\Osseum1\PycharmProjects\cr\test\main.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Osseum1\PycharmProjects\cr\test\example4.0.1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -448,27 +478,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tateMain.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="tk26example (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="cr" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ec_gost" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ec_gost/tk26example" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -499,26 +508,26 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.ReedSolomonMain2" />
-      <item itemvalue="Python.main2.py cProfile" />
-      <item itemvalue="Python.main2.py" />
-      <item itemvalue="Python.main3 cProfile" />
-      <item itemvalue="Python.main3" />
-      <item itemvalue="Python.main" />
-      <item itemvalue="Python.main.3py (1)" />
-      <item itemvalue="Python.main.py cProfile" />
       <item itemvalue="Python.main.py" />
-      <item itemvalue="Python.tateMain" />
-      <item itemvalue="Python.tk26example (1)" />
+      <item itemvalue="Python.main.3py (1)" />
+      <item itemvalue="Python.main3 cProfile" />
+      <item itemvalue="Python.main2.py" />
+      <item itemvalue="Python.main2.py cProfile" />
+      <item itemvalue="Python.main.py cProfile" />
       <item itemvalue="Python.tk26example" />
+      <item itemvalue="Python.example5.1.1" />
+      <item itemvalue="Python.example5.3.1" />
+      <item itemvalue="Python.example3.1.1 (1)" />
+      <item itemvalue="Python.example4.0.1_performance" />
+      <item itemvalue="Python.tateMain" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.example5.3.1" />
+        <item itemvalue="Python.example5.1.1" />
         <item itemvalue="Python.tateMain" />
-        <item itemvalue="Python.main" />
-        <item itemvalue="Python.tk26example (1)" />
-        <item itemvalue="Python.ReedSolomonMain2" />
-        <item itemvalue="Python.main3" />
+        <item itemvalue="Python.example4.0.1_performance" />
+        <item itemvalue="Python.example3.1.1 (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -555,7 +564,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650451050932</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="wip tate">
+      <created>1650640413379</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1650640413379</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView">
@@ -610,31 +626,65 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5248574" sideWeight="0.48548973" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix fin field representation&#10;created pairing test&#10;" />
     <MESSAGE value="fix fin field representation&#10;created pairing test&#10;some refactoring" />
     <MESSAGE value="fix fin field representation&#10;created pairing test&#10;some refactoring&#10;check order perf fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix fin field representation&#10;created pairing test&#10;some refactoring&#10;check order perf fix" />
+    <MESSAGE value="wip tate" />
+    <option name="LAST_COMMIT_MESSAGE" value="wip tate" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/example5.3.1.py</url>
+          <line>17</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/example3.1.1.py</url>
+          <line>27</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test/example4.0.1_performance.py</url>
+          <line>54</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ec/rationalFnc.py</url>
-          <line>47</line>
-          <option name="timeStamp" value="91" />
+          <line>230</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ec/ec.py</url>
-          <line>43</line>
-          <option name="timeStamp" value="96" />
+          <url>file://$PROJECT_DIR$/ec/rationalFnc.py</url>
+          <line>246</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/algebra/poly2.py</url>
-          <line>33</line>
-          <option name="timeStamp" value="97" />
+          <url>file://$PROJECT_DIR$/algebra/polye.py</url>
+          <line>81</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">

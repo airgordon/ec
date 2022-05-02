@@ -3,12 +3,36 @@ from algebra.euqlid import gcd
 
 class rationalFncE:
 
-    def __init__(self, x, y, rx, ry, millersF):
+    __slots__ = ("x", "y", "rx", "ry", "millersF", "divisor")
+
+    def __init__(self, x, y, rx, ry, millersF, divisor):
         self.x = x
         self.y = y
         self.rx = rx
         self.ry = ry
         self.millersF = millersF
+        self.divisor = divisor
+
+    @staticmethod
+    def __add_div(a, b):
+        res = a.copy()
+        for k in b.keys():
+            A = res.get(k, 0)
+            B = b.get(k)
+            C = A + B
+            if C:
+                res[k] = C
+            else:
+                del res[k]
+
+        return res
+
+    @staticmethod
+    def __neg_div(a):
+        res = dict()
+        for k, v in a.items():
+            res[k] = -v
+        return res
 
     def __mul__(self, other):
         _0 = self.millersF.poly.zero
@@ -29,7 +53,7 @@ class rationalFncE:
         rx = divmod(rx, g_rx_ry_y_x)[0]
         ry = divmod(ry, g_rx_ry_y_x)[0]
 
-        return rationalFncE(x, y, rx, ry, self.millersF)
+        return rationalFncE(x, y, rx, ry, self.millersF, self.__add_div(self.divisor, other.divisor))
 
     def __pow__(self, other):
         if not isinstance(other, int):
@@ -49,7 +73,7 @@ class rationalFncE:
             return (self * self) ** r * self
 
     def __invert__(self):
-        return rationalFncE(self.rx, self.ry, self.x, self.y, self.millersF)
+        return rationalFncE(self.rx, self.ry, self.x, self.y, self.millersF, self.__neg_div(self.divisor))
 
     def __truediv__(self, other):
         return self * ~other
@@ -60,3 +84,6 @@ class rationalFncE:
         q = self.x(x) + y * self.y(x)
         r = self.rx(x) + y * self.ry(x)
         return q / r
+
+    def __repr__(self):
+        return '{}'.format(self.divisor)

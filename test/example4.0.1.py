@@ -4,22 +4,22 @@ from ec.ecs import *
 from algebra.finField import finField
 from algebra.poly2 import poly
 
-from ec.pairings import Weil_2
+from ec.pairings import Weil_no_rec, Weil_no_mul, Weil_no_rec_no_mul
 
 ec = beginners4_0_1()
 
-zzz = ec.field
-p = poly(zzz)
+z = ec.field
+p = poly(z)
 u = p.u
 
-ff = finField(p.of([zzz.of(1), zzz.of(0), zzz.of(1)]))
+f = finField(u * u + 1)
 
-P = ec.of(zzz.of(2693), zzz.of(4312))
+P = ec.of(z(2693), z(4312))
 
-qx = p.of([zzz.of(633), zzz.of(6145)])
-qy = p.of([zzz.of(7372), zzz.of(109)])
+qx = u * 633 + 6145
+qy = u * 7372 + 109
 
-Q = ec.of(ff.of(qx), ff.of(qy))
+Q = ec.of(f.of(qx), f.of(qy))
 
 R = P + Q
 S = P + 2 * Q
@@ -35,10 +35,10 @@ def assertTrue(ex):
 def test(weil):
     start_time = time.time()
 
-    ex1 = ff.of(p.of([zzz.of(6744), zzz.of(5677)]))
-    ex2 = ff.of(p.of([zzz.of(3821), zzz.of(7025)]))
-    ex3 = ff.of(p.of([zzz.of(248), zzz.of(5)]))
-    ex4 = ff.of(p.of([zzz.of(2719), zzz.of(2731)]))
+    ex1 = f.of(u * 6744 + 5677)
+    ex2 = f.of(u * 3821 + 7025)
+    ex3 = f.of(u * 248 + 5)
+    ex4 = f.of(u * 2719 + 2731)
 
     assertTrue(weil(P, Q, R, S, r) == ex1)
     assertTrue(weil(403 * P, Q, R, S, r) == ex2)
@@ -48,7 +48,16 @@ def test(weil):
     assertTrue(weil(403 * P, 135 * Q, R, S, r) == ex4)
     assertTrue(weil(P, Q, R, S, r) ** (135 * 403) == ex4)
 
-    print("--- %s seconds ---" % (time.time() - start_time))
+    t = time.time() - start_time
+    print(" %s %s seconds" % (weil.__name__, t))
+    return t
 
 
-test(Weil_2)
+t1 = 0
+t2 = 0
+t1_2 = 0
+t2_2 = 0
+
+test(Weil_no_rec_no_mul)
+test(Weil_no_mul)
+test(Weil_no_rec)
